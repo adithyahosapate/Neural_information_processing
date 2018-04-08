@@ -2,7 +2,7 @@ import numpy as np
 
 np.random.seed(10)
 initial_seed = '0110'
-iterations = 10000
+iterations = 10
 k = len(initial_seed)
 
 # generate 2^k uniform random number in [0,1)
@@ -13,7 +13,7 @@ transition_probabilities = np.random.uniform(0, 1, int(2 ** k))
 transition_matrix = np.vstack([transition_probabilities, 1-transition_probabilities])
 
 f = open('small-data.txt', 'w')
-f.write(initial_seed)
+# f.write(initial_seed)
 
 current_state = initial_seed
 
