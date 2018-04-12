@@ -1,4 +1,6 @@
 import sys
+import numpy as np
+import matplotlib.pyplot as plt
 # C: blocks_discovered
 # u: last_partition
 # v: current_block_length
@@ -6,8 +8,8 @@ import sys
 
 def lz_complexity(s):
     n = len(s)
-    # just to make it 1 indexed, dont worry first letter won't matter 
-    s = "p" + s 
+    # just to make it 1 indexed, LOL
+    s = "p" + s
     i = 0
     blocks_discovered = 1
     last_partition = 1
@@ -15,6 +17,8 @@ def lz_complexity(s):
     max_length_discovered = 1
 
     while last_partition + current_block_length <= n:
+        #print(last_partition)
+        # print("i={} u={} v={}".format(i, last_partition, current_block_length))
         """ if current block part is matching with already discovered, then increment current block length    """
         if s[i + current_block_length] == s[last_partition + current_block_length]:
             current_block_length += 1
@@ -37,7 +41,7 @@ def lz_complexity(s):
                 i = 0
                 current_block_length = 1
                 max_length_discovered = 1
-            # we see from starting of undiscovered part
+            # else we see from starting of undiscovered part
             else:
                 current_block_length = 1
                 
@@ -50,4 +54,9 @@ def lz_complexity(s):
 if __name__ == "__main__":
     # print("input: {}".format(sys.argv[1]))
     f = open(sys.argv[1], "r")
-    print(lz_complexity(f.read()))
+    dataset=f.read()
+    entropies_list=[]
+    for i in range(10,10000,10):
+        entropies_list.append(lz_complexity(dataset[:i])/(i+0.0)*np.log(i))
+    plt.semilogx(range(1000,10000,100),entropies_list)
+    plt.show()
