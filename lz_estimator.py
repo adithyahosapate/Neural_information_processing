@@ -56,7 +56,10 @@ if __name__ == "__main__":
     f = open(sys.argv[1], "r")
     dataset=f.read()
     entropies_list=[]
-    for i in range(10,10000,10):
+    for i in range(1000,10000,1000):
         entropies_list.append(lz_complexity(dataset[:i])/(i+0.0)*np.log(i))
-    plt.semilogx(range(1000,10000,100),entropies_list)
+    plt.semilogx(range(1000, 10000, 1000), entropies_list)
+    plt.xlabel("Data Length")
+    plt.ylabel("Entropy Rate")
+    plt.title("Entropy Rate VS Data Length using LZ complexity")
     plt.show()
