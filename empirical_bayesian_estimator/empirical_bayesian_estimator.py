@@ -114,7 +114,7 @@ if __name__ == "__main__":
     dataset = sys.argv[1]
 
     # k'th order markov chain
-    k = 15
+    k = 30
 
     # calculate occarances of all strings of length <= DIGIT
     DIGIT = k + 1
