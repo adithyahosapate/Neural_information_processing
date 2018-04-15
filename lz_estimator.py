@@ -51,13 +51,18 @@ def lz_complexity(s):
     
     return blocks_discovered
 
+
 if __name__ == "__main__":
-    # print("input: {}".format(sys.argv[1]))
+    if len(sys.argv) != 2:
+        print("Give dataset as a command line argument")
+        exit()
+
     f = open(sys.argv[1], "r")
-    dataset=f.read()
-    entropies_list=[]
+    dataset = f.read()
+    entropies_list = []
     for i in range(1000,10000,1000):
         entropies_list.append(lz_complexity(dataset[:i])/(i+0.0)*np.log(i))
+
     plt.semilogx(range(1000, 10000, 1000), entropies_list)
     plt.xlabel("Data Length")
     plt.ylabel("Entropy Rate")

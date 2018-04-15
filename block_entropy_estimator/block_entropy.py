@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pickle
+import sys
+
 def block_entropy_estimator(k,data):
 	frequency_dict = {}
 
@@ -19,15 +21,22 @@ def block_entropy_estimator(k,data):
 	return entropy_sum		
 
 
-with open('../datasets/data.txt','r') as f:
+if len(sys.argv) != 3:
+        print("Give dataset & output file name as a command line argument")
+        exit()
+
+dataset = sys.argv[1]
+save_name = sys.argv[2] + ".pkl"
+
+with open(dataset,'r') as f:
 	data = f.read()
 
 entropies = []
 
-for k in range(50,100):
+for k in range(0,100):
 	entropy_k = block_entropy_estimator(k,data)
 	entropies.append(entropy_k)
 	print(entropy_k)
 
-with open('entropies-2.pkl','wb') as f:
+with open(save_name,'wb') as f:
 	pickle.dump(entropies,f)
