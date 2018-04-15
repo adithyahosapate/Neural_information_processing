@@ -2,7 +2,7 @@ import numpy as np
 
 np.random.seed(10)
 initial_seed = '0110'
-iterations = 10
+iterations = 10000
 k = len(initial_seed)
 
 # generate 2^k uniform random number in [0,1)
@@ -12,7 +12,7 @@ transition_probabilities = np.random.uniform(0, 1, int(2 ** k))
 # whose (i, j) entry defines probability of getting i which is 0/1 after known string j (in binary)
 transition_matrix = np.vstack([transition_probabilities, 1-transition_probabilities])
 
-f = open('small-data.txt', 'w')
+f = open('tial-data.txt', 'w')
 # f.write(initial_seed)
 
 current_state = initial_seed
