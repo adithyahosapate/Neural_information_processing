@@ -10,9 +10,17 @@ import sys
 import time
 import scipy.io
 import datetime
+import csv
+
+
+def decimalToBinary(length, sInDecimal):
+    s = bin(sInDecimal)[2:]
+    while len(s) < length:
+        s = "0" + s
+    return s
+
 
 warnings.filterwarnings("ignore")
-
 parser = argparse.ArgumentParser(description='Test A Neural Net')
 parser.add_argument('-weights', action="store", dest="weights",
                     help='Generate Bit_string', default="None")
@@ -22,27 +30,20 @@ parser.add_argument('-length', action="store", dest="length",default=100,
 weights = parser.parse_args().weights
 length = parser.parse_args().length
 
-f = open('lstm_data.txt',"w")
-initial_seed = [0,0,0,0,0,0,0,0,0,0]
+if weights == "None":
+    print("First Train model")
+    exit()
 
-if weights != "None":
-    model = load_model(weights)
-
-curr = initial_seed    
+model = load_model(weights)
+csv_file = open("prob.csv", "w")
+csv_writer = csv.writer(csv_file)
 one_hot_dict = {0: np.array([1.0, 0.0]), 1: np.array([0.0, 1.0])}
 
-for i in range(length):
-    data = [one_hot_dict[num] for num in curr]
+l = length
+for sInDecimal in range(0, 2 ** l):
+    string = decimalToBinary(l, sInDecimal)
+    string_char_list = [int(string[i],10) for i in range(len(string))] 
+    data = [one_hot_dict[num] for num in string_char_list]
     prediction = model.predict(np.array([data]))
-    print(data)
-    exit()
-    if np.random.uniform() < prediction[0][0]:
-    	f.write("0")
-    	curr = curr[1:]
-    	curr.append(0)
-    else:
-    	f.write("1")
-    	curr = curr[1:]
-    	curr.append(1)
-
-f.close()
+    csv_writer.writerow(["p(1|" + string + ")", prediction[0][1]])
+csv_file.close()
