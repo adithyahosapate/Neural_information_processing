@@ -23,7 +23,7 @@ weights = parser.parse_args().weights
 length = parser.parse_args().length
 
 f = open('lstm_data.txt',"w")
-initial_seed = [0,0,0,0,0,0,0,0,0,0]
+initial_seed = [1,0,0,1,0,0,0,1,0,0]
 
 if weights != "None":
     model = load_model(weights)
@@ -34,8 +34,7 @@ one_hot_dict = {0: np.array([1.0, 0.0]), 1: np.array([0.0, 1.0])}
 for i in range(length):
     data = [one_hot_dict[num] for num in curr]
     prediction = model.predict(np.array([data]))
-    print(data)
-    exit()
+    
     if np.random.uniform() < prediction[0][0]:
     	f.write("0")
     	curr = curr[1:]

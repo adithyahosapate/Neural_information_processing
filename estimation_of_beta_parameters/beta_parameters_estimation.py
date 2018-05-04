@@ -33,6 +33,9 @@ x = np.linspace(beta.ppf(0.01, ALPHA+n1, BETA+n-n1),
 a = max(zip(beta.pdf(x, ALPHA+n1, BETA+n-n1),x))[1]
 print(a)
 print(n1/n)
-plt.plot(x, beta.pdf(x, ALPHA+n1, BETA+n-n1))
-plt.plot(x, beta.pdf(x, ALPHA, BETA), 'r-')
+# plt.plot(x, beta.pdf(x, ALPHA+n1, BETA+n-n1))
+# plt.plot(x, beta.pdf(x, ALPHA, BETA), 'r-')
+# plt.show()
+
+plt.plot(range(700),np.random.binomial(size=700,n=1,p=a))
 plt.show()
