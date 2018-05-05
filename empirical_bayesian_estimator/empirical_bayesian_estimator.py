@@ -114,7 +114,7 @@ if __name__ == "__main__":
     dataset = sys.argv[1]
 
     # k'th order markov chain
-    k = 15
+    k = 10
 
     # calculate occarances of all strings of length <= DIGIT
     DIGIT = k + 1
@@ -154,5 +154,5 @@ if __name__ == "__main__":
             if s in freq.keys():
                 f.write("\'" + s + "\'" + "," + str(freq[s]) + "," + "p(1|" + s + ")," + str(prob_dictionary[s]) + "\n")
             else:
-                f.write("\'" + s + "\'" + "," + "0" + "\n")
+                f.write("\'" + s + "\'" + "," + "0" + "," + "p(1|" + s + ")," + str(prob_dictionary[s]) + "\n")
     f.close()
