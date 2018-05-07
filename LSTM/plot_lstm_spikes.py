@@ -11,12 +11,13 @@ file = open(file_name, "r")
 
 data = file.read()
 data_list = []
-for char in data[4205:4905]:
+for char in data:
 	data_list.append(int(char))
 
 plt.plot(range(len(data_list)), data_list)
+print(sum(data_list))
 plt.xlabel("Time")
 plt.ylabel("Spike")
-plt.title("Spikes using LSTM")
-plt.savefig("spikes_using_lstm.png")
+plt.title("Spike Train")
+plt.savefig("realspikes.png")
 plt.show()
