@@ -15,7 +15,7 @@ defer==1.0.6
 distro-info==0.17
 Django==2.0.2
 dnspython==1.15.0
-ecdsa==0.13
+ecdsa==0.13.3
 Electrum==3.0.3
 entrypoints==0.2.3
 enum34==1.1.6
