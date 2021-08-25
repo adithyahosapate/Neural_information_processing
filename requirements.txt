@@ -101,7 +101,7 @@ six==1.11.0
 sklearn==0.0
 system-service==0.3
 systemd-python==234
-tensorflow==1.4.1
+tensorflow==2.5.1
 tensorflow-tensorboard==0.4.0rc3
 terminado==0.8.1
 testpath==0.3.1
