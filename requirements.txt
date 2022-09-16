@@ -48,7 +48,7 @@ lazr.restfulclient==0.13.5
 lazr.uri==1.0.3
 Lempel-Ziv-complexity==0.1
 louis==3.0.0
-Mako==1.0.7
+Mako==1.2.2
 Markdown==2.6.10
 MarkupSafe==1.0
 matplotlib==2.1.0
