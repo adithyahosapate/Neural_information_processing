@@ -3,7 +3,7 @@ asn1crypto==0.22.0
 atari-py==0.1.1
 bleach==1.5.0
 Brlapi==0.6.5
-certifi==2018.1.18
+certifi==2022.12.7
 chardet==3.0.4
 command-not-found==0.3
 cryptography==1.9
